@@ -10,11 +10,6 @@ from App.controllers import ( create_user, get_all_users_json, get_all_users, in
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
-class Applicant(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
 
 app = create_app()
 migrate = get_migrate(app)
