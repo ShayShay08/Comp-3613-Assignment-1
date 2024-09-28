@@ -19,16 +19,22 @@ class Company(db.Model):
     contact = db.Column(db.Integer, nullable=False)
     address = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), nullable=False)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
 
        
 class Moderator(db.Model):
     moderatorID = db.Column(db.Integer, primary_key=True)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
     
-class JobOperator(db.Model):
+class JobOpening(db.Model):
     jobID = db.Column(db.Integer, primary_key=True)
     companyID = db.Column(db.Integer, unique=True, nullable=False)
     jobDescription = db.Column(db.String(120), nullable=False)
     submissionDeadline = db.Column(db.String(120), nullable=False)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
 
 
 
