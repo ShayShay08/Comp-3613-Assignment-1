@@ -3,11 +3,17 @@ from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
 from App.database import db, get_migrate
-from App.models import User, JobOpening, JobApplication  # Ensure JobOpening and JobApplication are imported
+from App.models import User 
+from App.models.jobApp import JobApplication,JobOpening
 from App.main import create_app
 from App.controllers import (create_user, get_all_users_json, get_all_users, initialize)
 
+
+
 app = create_app()
+if __name__ == "__main__":
+    app.run()
+
 migrate = get_migrate(app)
 
 # Initialize the database command
@@ -18,6 +24,8 @@ def init():
 
 # User Commands
 user_cli = AppGroup('user', help='User object commands')
+
+
 
 @user_cli.command("create", help="Creates a user")
 @click.argument("username", default="rob")
@@ -44,10 +52,15 @@ job_cli = AppGroup('job', help='Job commands')
 @click.argument("job_description")
 @click.argument("submission_deadline")
 def create_job_command(company_id, job_description, submission_deadline):
-    job = JobOpening(company_id=company_id, job_description=job_description, submission_deadline=submission_deadline)
-    db.session.add(job)
-    db.session.commit()
-    print(f"Job created for company {company_id}")
+    try:
+        job = JobOpening(company_id=company_id, job_description=job_description, submission_deadline=submission_deadline)
+        db.session.add(job)
+        db.session.commit()
+        print(f"Job created for company {company_id}")
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error creating job: {e}")
+
 
 @job_cli.command("list", help="List job openings")
 @click.argument("format", default="string")
@@ -100,3 +113,7 @@ def user_tests_command(type):
         sys.exit(pytest.main(["-k", "App"]))
 
 app.cli.add_command(test)
+app.cli.add_command(user_cli)
+app.cli.add_command(job_cli)
+
+
