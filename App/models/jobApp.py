@@ -42,3 +42,29 @@ class JobOpening(db.Model):
             'submission_deadline': self.submission_deadline
         }
 
+class Applicant(db.Model):
+    applicantID = db.Column(db.Integer, primary_key=True)
+    firstName = db.Column(db.String(80), unique=True, nullable=False)
+    lastName = db.Column(db.String(80), unique=True, nullable=False)
+    contact = db.Column(db.Integer, nullable=False)
+    address = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
+
+    
+class Company(db.Model):
+    companyID = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    contact = db.Column(db.Integer, nullable=False)
+    address = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
+
+       
+class Moderator(db.Model):
+    moderatorID = db.Column(db.Integer, primary_key=True)
+    username =  db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
+   

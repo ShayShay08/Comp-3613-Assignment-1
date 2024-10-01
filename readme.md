@@ -1,3 +1,17 @@
+# Cll commands documentation
+flask init 
+flask user create
+flask user create <username> <password>
+flask user list
+flask user list json
+flask job create <company_id> <job_description> <submission_deadline>
+flask job list
+flask job list json
+flask apply <job_id> <applicant_id> <resume>
+flask job applicants <job_id>
+flask job applicants <job_id> json
+
+
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uwidcit/flaskmvc)
 <a href="https://render.com/deploy?repo=https://github.com/uwidcit/flaskmvc">
   <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render">
@@ -192,16 +206,4 @@ If you are running into errors in gitpod when updateding your github actions fil
 
 If you are adding models you may need to migrate the database with the commands given in the previous database migration section. Alternateively you can delete you database file.
 
-# Cll commands documentation
-flask init 
-flask user create
-flask user create <username> <password>
-flask user list
-flask user list json
-flask job create <company_id> <job_description> <submission_deadline>
-flask job list
-flask job list json
-flask apply <job_id> <applicant_id> <resume>
-flask job applicants <job_id>
-flask job applicants <job_id> json
 
